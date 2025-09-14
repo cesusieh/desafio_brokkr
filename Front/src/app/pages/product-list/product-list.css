@@ -1,0 +1,143 @@
+.product-list-container {
+  background-color: #f9fafb;
+  padding: 0 2rem;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d1d5db;
+  padding: 1.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.product-header h1 {
+  color: #111827;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.sort-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0 2rem 0;
+  flex-wrap: wrap;
+}
+
+.sort-options span {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.sort-options button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #111827;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.sort-options button:hover {
+  background-color: #f3f4f6;
+}
+
+.sort-options button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.pagination-container {
+  padding: 2rem 0 3rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pagination-container button {
+  height: 40px;
+  min-width: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-container button:hover:not([disabled]) {
+  border-color: #2563eb;
+}
+
+.pagination-container button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.pagination-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.product-card {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 1rem;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-top: 0.5rem;
+}
+
+.loading-message {
+  padding: 4rem;
+  text-align: center;
+  grid-column: 1 / -1;
+}

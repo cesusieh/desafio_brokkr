@@ -1,0 +1,50 @@
+<div class="product-list-container">
+
+  <header class="product-header">
+    <h1>Produtos</h1>
+    
+    <div class="search-container">
+      <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    </div>
+  </header>
+
+  <div class="sort-options">
+    <span>Ordenar por:</span>
+    <button (click)="setSort('preco,asc')" [class.active]="currentSort === 'preco,asc'">
+      Menor Preço
+    </button>
+    <button (click)="setSort('preco,desc')" [class.active]="currentSort === 'preco,desc'">
+      Maior Preço
+    </button>
+    <button (click)="setSort('nome,asc')" [class.active]="currentSort === 'nome,asc'">
+      Alfabético (A-Z)
+    </button>
+  </div>
+
+  <div *ngIf="products.length > 0; else noProducts" class="product-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <img class="product-image" [src]="product.url_imagem" [alt]="product.nome">
+      <div class="product-info">
+        <h2 class="product-name">{{ product.nome }}</h2>
+        <p class="product-price">{{ product.preco | currency:'BRL' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noProducts>
+    <p class="loading-message">Carregando produtos ou nenhum resultado encontrado...</p>
+  </ng-template>
+  
+  <div *ngIf="totalPages > 1" class="pagination-container">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+      &laquo;
+    </button>
+    <button *ngFor="let pageNum of pagesArray" (click)="goToPage(pageNum)" [class.active]="currentPage === pageNum">
+      {{ pageNum }}
+    </button>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+      &raquo;
+    </button>
+  </div>
+
+</div>
