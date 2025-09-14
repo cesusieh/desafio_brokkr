@@ -22,13 +22,18 @@
   </div>
 
   <div *ngIf="products.length > 0; else noProducts" class="product-grid">
-    <div *ngFor="let product of products" class="product-card">
-      <img class="product-image" [src]="product.url_imagem" [alt]="product.nome">
-      <div class="product-info">
-        <h2 class="product-name">{{ product.nome }}</h2>
-        <p class="product-price">{{ product.preco | currency:'BRL' }}</p>
+    <a *ngFor="let product of products" 
+      [routerLink]="['/products', product.id]" 
+      class="product-card-link">
+
+      <div class="product-card">
+        <img class="product-image" [src]="product.url_imagem" [alt]="product.nome">
+        <div class="product-info">
+          <h2 class="product-name">{{ product.nome }}</h2>
+          <p class="product-price">{{ product.preco | currency:'BRL' }}</p>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
 
   <ng-template #noProducts>

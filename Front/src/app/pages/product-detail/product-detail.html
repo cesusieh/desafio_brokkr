@@ -1,0 +1,37 @@
+<button (click)="goBack()" class="back-button">
+  &larr; Voltar para a lista
+</button>
+
+<div *ngIf="product; else loading" class="product-detail-container">
+  
+  <div class="image-column">
+    <img [src]="product.url_imagem" [alt]="product.nome">
+  </div>
+
+  <div class="info-column">
+    <h1 class="product-name">{{ product.nome }}</h1>
+    
+    <p class="product-description">{{ product.descricao }}</p>
+
+    <div class="stock-info" [class.out-of-stock]="product.quantidade_em_stock === 0">
+      <span *ngIf="product.quantidade_em_stock > 0">
+        Em estoque ({{ product.quantidade_em_stock }} unidades)
+      </span>
+      <span *ngIf="product.quantidade_em_stock === 0">
+        Produto esgotado
+      </span>
+    </div>
+    
+    <p class="product-price">{{ product.preco | currency:'BRL' }}</p>
+
+    <div class="meta-info">
+      <small>Cadastrado em: {{ product.createdAt | date:'dd/MM/yyyy' }}</small>
+      <small>Última atualização: {{ product.updatedAt | date:'dd/MM/yyyy' }}</small>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p class="loading-message">Carregando detalhes do produto...</p>
+</ng-template>
