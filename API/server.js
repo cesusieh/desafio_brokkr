@@ -1,32 +1,27 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require("cors")
-const sequelize = require('./src/config/database');
-const productRoutes = require("./src/routes/productRoutes")
+const { sequelize, connectWithRetry} = require('./src/config/database');
+const productRoutes = require("./src/routes/productRoutes");
+const { seedDatabase } = require('./src/config/seed');
 
 const app = express()
+
 app.use(cors())
 app.use(express.json())
-
 app.use("/api", productRoutes)
 
-app.get('/', (req, res) => {
-  res.send('API do Catálogo de Produtos funcionando!');
-});
-
-const startServer = async () => {
+async function startServer() {
   try {
-    await sequelize.authenticate();
-    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    await connectWithRetry();
+    await sequelize.sync()
 
-    await sequelize.sync({ alter: true });
-    console.log('Modelos sincronizados com o banco de dados.');
+    await seedDatabase()
 
-    app.listen(3000, () => {
-      console.log(`Servidor rodando em http://localhost:3000`);
-    });
-  } catch (error) {
-    console.error('Não foi possível iniciar o servidor:', error);
+    app.listen(3000, () => console.log('API iniciada em :3000'));
+  } catch (err) {
+    console.log(err)
+    process.exit(1);
   }
-};
+}
 startServer();
