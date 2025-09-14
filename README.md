@@ -35,3 +35,6 @@ A API de backend disponibiliza os seguintes endpoints para gerenciamento de prod
 | **POST** | `/api/products` | Cria um novo produto. |  | `{ "nome": "...", "descricao": "...", "preco": "...", "url_imagem": "...", "quantidade_em_stock": "..." }` |
 | **PUT** | `/api/products/:id` | Atualiza um produto existente. | Id | `{ "nome": "...", "descricao": "...", "preco": "...", "url_imagem": "...", "quantidade_em_stock": "..." }` |
 | **DELETE** | `/api/products/:id` | Deleta um produto pelo ID. | Id  |  |
+
+![Página produtos](./Screenshots/Products.png)
+![Página detalhes](./Screenshots/ProductDetails.png)
